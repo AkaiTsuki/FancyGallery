@@ -1,0 +1,38 @@
+.fancyGallery{
+	position: relative;
+	padding: 10px 10px;
+	box-shadow: 0 0 0 1px #d5d5d5;
+	margin: 10px 0;
+}
+
+.fancyGallery img{
+	max-width: 100%;
+	display: block;
+	border: 0;
+}
+
+.fancyGallery div.leftArrow,
+.fancyGallery div.rightArrow{
+	position: absolute;
+}
+
+.fancyGallery div.rightArrow{
+	right: 10px;
+}
+
+.fancyGallery ul{
+	left: 70px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+
+.fancyGallery ul li{
+	float:left;
+	margin-right: 20px;
+}
+
+.fancyGallery .clearMargin{
+	margin-right: 0;
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fancy Gallery</title>
+	<link rel="stylesheet" href="css/fancyGallery.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/fancyGallery.js"></script>
+	<style>
+	div.container{
+		margin: 0 auto;
+		width: 960px;
+	}
+
+	</style>
+	<script>
+		$(function(){
+			$('#fancyGallery').fancyGallery({numDisplay:6});
+			$('#fancyGallery1').fancyGallery({numDisplay:4,height: 143});
+			$('#box').fancyGallery({height:'max'});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div>
+			<h1>HTML code</h1>
+			<pre>
+			&lt;ul id=&quot;fancyGallery&quot;&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img1.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img2.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img3.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img4.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img4.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img3.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img2.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img1.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img3.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;img/img4.jpg&quot;&gt;&lt;img src=&quot;img/thumbnail-stuck.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			</pre>
+		</div>
+		<div>
+			<h1>Auto height</h1>
+			<p>
+				The height will be automatically set to the same value of item width.
+			</p>
+			<pre>
+				$(#id).fancyGallery({numDisplay:6});
+			</pre>
+		</div>
+		<ul id="fancyGallery">
+				<li><a href="img/img1.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img2.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img3.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img4.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img4.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img3.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img2.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img3.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+				<li><a href="img/img4.jpg"><img src="img/thumbnail-stuck.png" alt=""></a></li>
+		</ul>
+		<div>
+			<h1>Custome height</h1>
+			<p>
+				Set the height of gallery as same as the image height.
+			</p>
+			<pre>
+				$('#fancyGallery1').fancyGallery({numDisplay:4,height:80});
+			</pre>
+		</div>
+		<ul id="fancyGallery1">
+				<li><a href="img/img1.jpg"><img src="img/img1.jpg" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/img2.jpg" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/img3.jpg" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/img4.jpg" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/img1.jpg" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/img4.jpg" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/img3.jpg" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/img2.jpg" alt=""></a></li>
+				<li><a href="img/img1.jpg"><img src="img/img2.jpg" alt=""></a></li>
+		</ul>
+		<div>
+			<h1>Maximum Height</h1>
+			<p>
+				Finding the maximum height of all item and set it as the gallery height.
+			</p>
+			<pre>
+				$('#fancyGallery1').fancyGallery({numDisplay:4,height:'max'});
+			</pre>
+		</div>
+		<ul id="box">
+			<li>
+				<h1>Title</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quam, commodi, possimus, quasi voluptatibus assumenda rem velit perferendis natus sapiente recusandae quaerat id adipisci mollitia cumque aspernatur eos sint dicta?</p>
+			</li>
+			<li>
+				<h1>Title</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quam, commodi, possimus, quasi voluptatibus assumenda rem velit perferendis natus sapiente recusandae quaerat id adipisci mollitia cumque aspernatur eos sint dicta?</p>
+			</li>
+			<li>
+				<h1>Title</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quam, commodi, possimus, quasi voluptatibus assumenda rem velit perferendis natus sapiente recusandae quaerat id adipisci mollitia cumque aspernatur eos sint dicta?</p>
+			</li>
+			<li>
+				<h1>Title</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quam, commodi, possimus, quasi voluptatibus assumenda rem velit perferendis natus sapiente recusandae quaerat id adipisci mollitia cumque aspernatur eos sint dicta?</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, recusandae, aliquid, laborum voluptatum itaque ratione esse modi sapiente eos nam quia dignissimos est cum nihil quidem iusto autem veritatis expedita!</p>
+			</li>
+			<li>
+				<h1>Title</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quam, commodi, possimus, quasi voluptatibus assumenda rem velit perferendis natus sapiente recusandae quaerat id adipisci mollitia cumque aspernatur eos sint dicta?</p>
+			</li>
+			<li>
+				<h1>Title</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quam, commodi, possimus, quasi voluptatibus assumenda rem velit perferendis natus sapiente recusandae quaerat id adipisci mollitia cumque aspernatur eos sint dicta?</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, accusamus.</p>
+			</li>
+			<li>
+				<h1>Title</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quam, commodi, possimus, quasi voluptatibus assumenda rem velit perferendis natus sapiente recusandae quaerat id adipisci mollitia cumque aspernatur eos sint dicta?</p>
+			</li>
+			<li>
+				<h1>Title</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quam, commodi, possimus, quasi voluptatibus assumenda rem velit perferendis natus sapiente recusandae quaerat id adipisci mollitia cumque aspernatur eos sint dicta?</p>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
