@@ -16,6 +16,10 @@
 				bindEvent($this,settings);
 				
 				debug("numDisplay: "+settings.numDisplay);
+
+				$(window).resize(function(){
+					setDimension(settings,$this);
+				});
 				
 				hideAll($this,settings);
 			});
