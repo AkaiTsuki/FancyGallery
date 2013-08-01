@@ -31,8 +31,59 @@
 .fancyGallery ul li{
 	float:left;
 	margin-right: 20px;
+	overflow: hidden;
 }
 
 .fancyGallery .clearMargin{
 	margin-right: 0;
+}
+
+
+/*-------------- popup dialog to show enlarged image -----------------*/
+.fancyModal{
+	display: none;
+	z-index: 299;
+	position: absolute !important;
+	background: #fff;
+	box-shadow: 2px 2px 10px 2px #000; 
+}
+
+.fancyModal img{
+	max-width: 100%;
+	display: block;
+}
+
+.fancyModal .fancyCloseTag{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 20px;
+	height: 20px;
+	background: url('../img/close.png') no-repeat;
+	opacity: 0.8;
+	display: none;
+}
+
+.fancyModal .imageTitle{
+	position: absolute;
+	bottom: 0;
+	display: inline-block;
+	width: 96%;
+	background: rgba(14,14,14,.8);
+	color: #fff;
+	padding: 2%;
+	text-align: center;
+}
+
+.fancyModal-bg{
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #141414;
+	background: rgba(14,14,14,.85);
+	cursor: pointer;
+	z-index: 199;
 }

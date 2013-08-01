@@ -19,6 +19,7 @@
 
 				$(window).resize(function(){
 					setDimension(settings,$this);
+					setModalDimension();
 				});
 				
 				hideAll($this,settings);
@@ -250,6 +251,130 @@
 				showCurrentPage($this,settings);
 			return false;
 		});
+
+		if(!settings.modal)
+			return;
+
+		$('li a',$this).click(function(){
+			loadImage($(this));
+			return false;
+		});
+
+		$('.fancyModal .fancyCloseTag').click(function(){
+			hideModal(settings);
+			return false;
+		});
+
+		$('.fancyModal').hover(function(){
+			$('.fancyModal .fancyCloseTag').stop(true,true).fadeIn('fast');
+		},function(){
+			$('.fancyModal .fancyCloseTag').stop(true,true).fadeOut('fast');
+		});
+
+		$('.fancyModal-bg').click(function(){
+			hideModal(settings);
+		});
+
+		$('.fancyModal .enlargeImg').load(function(){
+
+			showModal(settings);
+
+			var imgOrinWidth,imgOrinHeight;
+			var orinImg = $(this);
+			var newImg = new Image();
+			newImg.src = orinImg.attr('src');
+			imgOrinWidth = newImg.width;
+			imgOrinHeight = newImg.height;
+
+			positionImg(imgOrinWidth,imgOrinHeight);
+
+			var w,h;
+			w=$(this).width();
+			h=$(this).height();
+			$('.fancyModal .imageTitle').text(imgTitle);
+			$('.fancyModal').css({
+				width: w,
+				height: h
+			});
+
+			$(window).resize();
+		});
+	}
+
+	function positionImg(imgOrinWidth, imgOrinHeight){
+		var windowH, windowW, minHdiff, minVdiff, diffH, diffV;
+		var newW,newH;
+
+		windowW= $(window).innerWidth();
+		windowH = $(window).innerHeight();
+
+		minHdiff = (windowW/10)*2;
+	    minVdiff = (windowH/10)*2;
+
+	    diffH = windowW - imgOrinWidth;
+	    diffV = windowH - imgOrinWidth;
+
+	    if ((windowW - minHdiff) >= imgOrinWidth) {
+	    	newW = imgOrinWidth;
+	    }else{
+	    	newW = windowW - minHdiff;
+	    }
+
+	    if ((windowH - minVdiff) >= imgOrinHeight) {
+	    	newH = imgOrinHeight;
+	    }else{
+	    	newH = (windowH - minVdiff);
+	    }
+
+	    $('.fancyModal .enlargeImg').css({height: 'auto',width:'auto'});
+
+	    if(diffH <= minHdiff && diffV <= minVdiff){
+	    	if(diffH <= diffV)
+	    		$('.fancyModal .enlargeImg').css('width',newW);
+	    	else
+	    		$('.fancyModal .enlargeImg').css('height',newH);
+	    }else if(diffH <= minHdiff){
+	    	$('.fancyModal .enlargeImg').css('width',newW);
+	    }else if(diffV <= minVdiff){
+	    	$('.fancyModal .enlargeImg').css('height',newH);
+	    }
+	}
+
+
+	function loadImage($imgLink){
+		var clickedImg = $imgLink.find('img');
+		var imgSrc = $imgLink.attr('href');
+		imgTitle = clickedImg.attr('alt');
+		if($('.fancyModal .enlargeImg').attr('src')){
+			$('.fancyModal .enlargeImg').removeAttr('src');
+		}
+		$('.fancyModal .enlargeImg').attr('src',imgSrc);
+	}
+
+	function showModal(settings){
+		$('.fancyModal-bg').stop(true,true).fadeIn(settings.delay/2);
+		
+		$('.fancyModal').css({
+			opacity: '0',
+			display: 'block'
+		});
+
+		$('.fancyModal').stop(true,true).delay(settings.delay/2).animate({opacity: '1'},settings.delay);
+	}
+
+	function hideModal(settings){
+		$('.fancyModal').stop(true,true).fadeOut(settings.delay/2);
+		$('.fancyModal-bg').stop(true,true).delay(settings.delay/2).fadeOut(settings.delay/2,function(){
+			$('.fancyModal').removeAttr('style');
+			$('.fancyModal-bg').removeAttr('style');
+		});
+	}
+
+	function setModalDimension(){
+		$('.fancyModal').css({
+			'top': ($(window).height()-$('.fancyModal').outerHeight())/2 + $(document).scrollTop(),
+			'left': ($(window).width()-$('.fancyModal').outerWidth())/2 + $(document).scrollLeft()
+		});
 	}
 
 
@@ -268,7 +393,9 @@
 			listMarginRight: 20, /* the right margin of each item in gallery */
 			arrowSizePixel: 40, /* The size of arrow icons in pixel */
 			startPage: 0,  /* The start page of the pagination */
-			height: "auto" /* The height of the gallery which does not contains paddings and margins*/
+			height: "auto", /* The height of the gallery which does not contains paddings and margins*/
+			delay : 400, /* The time for animate effect like fade in or fade out */
+			modal : true
 		};
 
 		// Method calling logic
@@ -277,7 +404,7 @@
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.tooltip');
+            $.error('Method ' + method + ' does not exist on jQuery.fancyGallery');
         }
 	}	
 
