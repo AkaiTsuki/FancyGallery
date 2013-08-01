@@ -252,32 +252,39 @@
 			return false;
 		});
 
+		/* If the modal is not set, then no popup window will show when click on the content of gallery */
 		if(!settings.modal)
 			return;
 
+		/* thumbnail click event */
 		$('li a',$this).click(function(){
 			loadImage($(this));
 			return false;
 		});
 
+		/* close modal tag */
 		$('.fancyModal .fancyCloseTag').click(function(){
 			hideModal(settings);
 			return false;
 		});
 
+		/* modal hover to show/hide close tag */
 		$('.fancyModal').hover(function(){
 			$('.fancyModal .fancyCloseTag').stop(true,true).fadeIn('fast');
 		},function(){
 			$('.fancyModal .fancyCloseTag').stop(true,true).fadeOut('fast');
 		});
 
+		/* close modal by click modal background */
 		$('.fancyModal-bg').click(function(){
 			hideModal(settings);
 		});
 
+		/* event the after image complete loading */
 		$('.fancyModal .enlargeImg').load(function(){
 
 			showModal(settings);
+			hideLoader();
 
 			var imgOrinWidth,imgOrinHeight;
 			var orinImg = $(this);
@@ -301,6 +308,25 @@
 		});
 	}
 
+	function showLoader(){
+		$('.fancyLoader').stop(true,true).show();
+		$('.fancyLoader').css({
+			'top': ($(window).height()-$('.fancyLoader').outerHeight())/2 + $(document).scrollTop(),
+			'left': ($(window).width()-$('.fancyLoader').outerWidth())/2 + $(document).scrollLeft()
+		});
+	}
+
+	function hideLoader(){
+		$('.fancyLoader').stop(true,true).fadeOut('fast',function(){
+			$('.fancyLoader').removeAttr('style');
+		});
+	}
+
+	/*
+	*	Set the image's width and height based on current window inner space
+	*	@imgOrinWidth: the original width of the image
+	*	@imgOrinHeight: the original height of the image
+	*/
 	function positionImg(imgOrinWidth, imgOrinHeight){
 		var windowH, windowW, minHdiff, minVdiff, diffH, diffV;
 		var newW,newH;
@@ -340,7 +366,10 @@
 	    }
 	}
 
-
+	/*
+	*	load the image by setting the src attribute
+	*	@$imgLink: the <a> wrap the image
+	*/
 	function loadImage($imgLink){
 		var clickedImg = $imgLink.find('img');
 		var imgSrc = $imgLink.attr('href');
@@ -351,8 +380,13 @@
 		$('.fancyModal .enlargeImg').attr('src',imgSrc);
 	}
 
+	/*
+	*	show the modal with animate effects
+	*	@settings: the settings of plugin
+	*/
 	function showModal(settings){
 		$('.fancyModal-bg').stop(true,true).fadeIn(settings.delay/2);
+		showLoader();
 		
 		$('.fancyModal').css({
 			opacity: '0',
@@ -362,6 +396,10 @@
 		$('.fancyModal').stop(true,true).delay(settings.delay/2).animate({opacity: '1'},settings.delay);
 	}
 
+	/*
+	*	hide the modal with animate effects
+	*	@settings: the settings of plugin
+	*/
 	function hideModal(settings){
 		$('.fancyModal').stop(true,true).fadeOut(settings.delay/2);
 		$('.fancyModal-bg').stop(true,true).delay(settings.delay/2).fadeOut(settings.delay/2,function(){
@@ -370,6 +408,9 @@
 		});
 	}
 
+	/*
+	*	Set the dimension of modal
+	*/
 	function setModalDimension(){
 		$('.fancyModal').css({
 			'top': ($(window).height()-$('.fancyModal').outerHeight())/2 + $(document).scrollTop(),
